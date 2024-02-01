@@ -67,6 +67,22 @@ public class SequentialSearchST<Key, Value>
     @Override
     public Value get(Key key)
     {
+        //helper node
+        Node curr = head;
+        
+        //search for key
+        while(curr != null)
+        {
+            //return key if found
+            if(key.equals(curr.key))
+            {
+                return curr.value;
+            }
+            
+            curr = curr.next;
+        }
+        
+        //key not found, return null
         return null;
     }
     
