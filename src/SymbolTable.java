@@ -21,7 +21,8 @@ public interface SymbolTable<Key, Value> {
     /**
      * Remove key (and it's value) from the table.
      */
-    default void delete(Key key) {
+    default void delete(Key key)
+    {
         // find the key in the table and set
         // its associated value to null
         // (this is called "lazy deletion")
@@ -31,7 +32,8 @@ public interface SymbolTable<Key, Value> {
     /**
      * Returns true if there is a value paired with a key.
      */
-    default boolean contains(Key key) {
+    default boolean contains(Key key)
+    {
         return get(key) != null;
     }
 
@@ -39,7 +41,8 @@ public interface SymbolTable<Key, Value> {
      * Returns true if the table is empty.
      * @return
      */
-    default boolean isEmpty() {
+    default boolean isEmpty()
+    {
         return size() == 0;
     }
 
