@@ -54,7 +54,23 @@ public class BinarySearchST<Key extends Comparable, Value>
     @Override
     public void put(Key key, Value val)
     {
-    
+        int i  = rank(key);
+
+        if (i<size && key.compareTo(keys[i])==0)
+        {
+            values[i] = val;
+            return;
+        }
+
+        for (int k = size; k > i; k--)
+        {
+            keys[k] = keys[k-1];
+            values[k] = values[k-1];
+        }
+
+        keys[i]=key;
+        values[i]=val;
+        size++;
     }
     
     /**
@@ -65,6 +81,18 @@ public class BinarySearchST<Key extends Comparable, Value>
     @Override
     public Value get(Key key)
     {
+        if(isEmpty())
+        {
+            return null;
+        }
+
+        int i = rank(key);
+
+        if(i<size && key.equals(keys[i]))
+        {
+            return values[i];
+        }
+
         return null;
     }
     
@@ -76,7 +104,7 @@ public class BinarySearchST<Key extends Comparable, Value>
     @Override
     public int size()
     {
-        return 0;
+        return size;
     }
     
     /**
@@ -86,6 +114,13 @@ public class BinarySearchST<Key extends Comparable, Value>
     @Override
     public Iterable<Key> keys()
     {
-        return null;
+        Queue<Key> q = new LinkedQueue<>();
+
+        for (int i = 0; i<size;i++)
+        {
+            q.enqueue(keys[i]);
+        }
+
+        return q;
     }
 }
